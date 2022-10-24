@@ -20,7 +20,7 @@ const main = async () => {
 		description: "Post#2 Description",
 	});
 
-	const Comment1 = await controller.createComment({
+	const Comment1 = await controller.createComment(Post1.id, {
 		name: "kuma",
 		postId: 1,
 	})
