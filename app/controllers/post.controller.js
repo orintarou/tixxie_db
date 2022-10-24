@@ -2,6 +2,7 @@ const db=require("../models");
 const Post = db.posts;
 const Comment = db.comments;
 
+//Create Post
 exports.createPost = (post) => {
   return Post.create({
     title: post.title,
@@ -16,6 +17,7 @@ exports.createPost = (post) => {
     });
 };
 
+//Create Comment
 exports.createComment = (postId, comment) => {
   return Comment.create({
     name: comment.name,
@@ -31,6 +33,7 @@ exports.createComment = (postId, comment) => {
     });
 };
 
+//Search for Post
 exports.findPostById = (postId) => {
   return Post.findByPk(postId, { include: ["comments"] })
     .then((post) => {
@@ -41,6 +44,7 @@ exports.findPostById = (postId) => {
     });
 };
 
+//Search for Comment
 exports.findCommentById = (id) => {
   return Comment.findByPk(id, { include: ["post"] })
     .then((comment) => {
@@ -51,7 +55,7 @@ exports.findCommentById = (id) => {
     });
 };
 
-
+//Return All Posts Including Comments
 exports.findAll = () => {
   return Post.findAll({
     include: ["comments"],
