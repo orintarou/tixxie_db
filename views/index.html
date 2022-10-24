@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <header>
+      <h1>
+        Posts
+      </h1>
+    </header>
+
+    <main>
+      <form
+        action="/new/post"
+        method="POST"
+        enctype="application/x-www-form-urlencoded"
+      >
+        <input
+          name="post"
+          type="text"
+          maxlength="100"
+          value=""
+          placeholder="Add a post"
+        />
+        <button type="submit">Add</button>
+      </form>
+      <section class="posts">
+        <ul id="posts"></ul>
+      </section>
+      <p><a href="/reset">Reset</a></p>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+	    $(function() {
+		$.get("/posts", function(posts) {
+			posts.forEach(function(post) {
+					    var id = "<li id=" + post.id + "></li>"
+				$(id)
+				.text(post.title)
+				.appendTo("ul#posts");
+				});
+			});
+		});
+
+    </script>
+  </body>
+</html>
+
