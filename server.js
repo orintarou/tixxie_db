@@ -38,21 +38,29 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 app.get("/", function(request, response) {
-  controller.findAll().then(function(posts) {
-    // finds all entries in the users table
-    response.send(posts); // sends users back to the page
-  });
+	controller.findAll().then(function(posts) {
+		// finds all entries in the users table
+		response.send(posts); // sends users back to the page
+	});
+});
+
+app.get("/post/:id", function(request, response) {
+	const {id} = request.params;
+	controller.findPostById(id).then(function(post) {
+		// finds all entries in the users table
+		response.send(post); // sends users back to the page
+	});
 });
 
 // create a new entry in the posts table
 app.post("/new", urlencodedParser, function(request, response) {
-  db.posts.create({ title: request.body.post });
-  response.redirect("/");
+	db.posts.create({ title: request.body.post });
+	response.redirect("/");
 });
 
 // Listen on port 8080
 var listener = app.listen(8000, function() {
-  console.log("Listening on port " + listener.address().port);
+	console.log("Listening on port " + listener.address().port);
 });
 
 
