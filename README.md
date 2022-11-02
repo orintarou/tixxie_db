@@ -5,7 +5,7 @@
 ```node server.js``` to run server
 
 
-endpoints:
+endpoints:\n
 ```localhost:8000/``` - returns all posts and associated comments.
 ```localhost:8000/post/:id``` - returns data for a single post as requested by id
 
