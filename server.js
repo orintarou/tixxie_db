@@ -33,12 +33,12 @@ const main = async () => {
 
 db.sequelize.sync();
 db.sequelize.sync({ force: true }).then(() => {
+	main();
 	console.log("Drop and re-sync db.");
 });
 
 app.get("/", function(request, response) {
-	main();
-  db.posts.findAll().then(function(posts) {
+  controller.findAll().then(function(posts) {
     // finds all entries in the users table
     response.send(posts); // sends users back to the page
   });
