@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<script>
+		handleSubmit = (e) => {
+					e.preventDefault();
+					let postTitle = document.getElementById("post-title").value;
+					let postDescription = document.getElementById("post-description").value;
+					fetch("./posts").then((result) => {
+								result;
+							}).then((data) => {
+										console.log(data);
+									})
+					console.log(postTitle);
+					console.log(postDescription);
+				}
+	</script>
+	<body>
+		<p>Hello</p>
+		<form>
+			<input id="post-title" type="text" placeholder="post-title"></input>
+			</br>
+			<input id="post-description" type="text" placeholder="post-description"></input>
+			</br>
+			<input onclick="handleSubmit(event)" type="submit"></input>
+		</form>
+	</body>
+</html>
+

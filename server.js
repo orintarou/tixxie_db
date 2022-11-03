@@ -38,11 +38,21 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 app.get("/", function(request, response) {
+	response.sendFile('index.html', {root: __dirname });
+//	controller.findAll().then(function(posts) {
+		// finds all entries in the users table
+///		response.send(posts); // sends users back to the page
+	//});
+});
+
+app.get("/posts", function(request, response) {
 	controller.findAll().then(function(posts) {
 		// finds all entries in the users table
 		response.send(posts); // sends users back to the page
 	});
 });
+
+
 
 app.get("/post/:id", function(request, response) {
 	const {id} = request.params;
