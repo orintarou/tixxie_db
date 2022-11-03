@@ -53,10 +53,16 @@ app.get("/post/:id", function(request, response) {
 });
 
 // create a new entry in the posts table
-app.post("/new", urlencodedParser, function(request, response) {
-	db.posts.create({ title: request.body.post });
+app.post("/post", urlencodedParser, function(request, response) {
+	db.posts.create({ title: request.body.title });
 	response.redirect("/");
 });
+
+app.post("/comment", urlencodedParser, function(request, response) {
+	db.comments.create({ postId: request.body.postId });
+	response.redirect("/");
+});
+
 
 // Listen on port 8080
 var listener = app.listen(8000, function() {
